@@ -10,7 +10,7 @@ namespace Comparison_Tool_v2
 {
     public partial class Form1 : Form
     {
-
+        //Change
         string starPH;
         string starYTD;
         bool phSuccess = true;
