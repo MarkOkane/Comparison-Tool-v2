@@ -59,6 +59,10 @@
             this.sfdYTD = new System.Windows.Forms.SaveFileDialog();
             this.sfdPHPayCodes = new System.Windows.Forms.SaveFileDialog();
             this.sfdYtdPayCodes = new System.Windows.Forms.SaveFileDialog();
+            this.lblColCountPRPH = new System.Windows.Forms.Label();
+            this.lblColCountPRYTD = new System.Windows.Forms.Label();
+            this.lblColCountStarPH = new System.Windows.Forms.Label();
+            this.lblColCountStarYTD = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabImport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnYearToDateStar)).BeginInit();
@@ -140,6 +144,10 @@
             // tabImport
             // 
             this.tabImport.BackColor = System.Drawing.Color.White;
+            this.tabImport.Controls.Add(this.lblColCountStarYTD);
+            this.tabImport.Controls.Add(this.lblColCountStarPH);
+            this.tabImport.Controls.Add(this.lblColCountPRYTD);
+            this.tabImport.Controls.Add(this.lblColCountPRPH);
             this.tabImport.Controls.Add(this.lblImportYTD);
             this.tabImport.Controls.Add(this.lblYearToDateStar);
             this.tabImport.Controls.Add(this.lblImportPH);
@@ -400,6 +408,46 @@
             this.sfdYtdPayCodes.RestoreDirectory = true;
             this.sfdYtdPayCodes.Title = "Please choose a location to save your report";
             // 
+            // lblColCountPRPH
+            // 
+            this.lblColCountPRPH.AutoSize = true;
+            this.lblColCountPRPH.Font = new System.Drawing.Font("Dubai", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColCountPRPH.ForeColor = System.Drawing.Color.Maroon;
+            this.lblColCountPRPH.Location = new System.Drawing.Point(574, 93);
+            this.lblColCountPRPH.Name = "lblColCountPRPH";
+            this.lblColCountPRPH.Size = new System.Drawing.Size(0, 22);
+            this.lblColCountPRPH.TabIndex = 18;
+            // 
+            // lblColCountPRYTD
+            // 
+            this.lblColCountPRYTD.AutoSize = true;
+            this.lblColCountPRYTD.Font = new System.Drawing.Font("Dubai", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColCountPRYTD.ForeColor = System.Drawing.Color.Maroon;
+            this.lblColCountPRYTD.Location = new System.Drawing.Point(574, 185);
+            this.lblColCountPRYTD.Name = "lblColCountPRYTD";
+            this.lblColCountPRYTD.Size = new System.Drawing.Size(0, 22);
+            this.lblColCountPRYTD.TabIndex = 19;
+            // 
+            // lblColCountStarPH
+            // 
+            this.lblColCountStarPH.AutoSize = true;
+            this.lblColCountStarPH.Font = new System.Drawing.Font("Dubai", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColCountStarPH.ForeColor = System.Drawing.Color.Maroon;
+            this.lblColCountStarPH.Location = new System.Drawing.Point(574, 277);
+            this.lblColCountStarPH.Name = "lblColCountStarPH";
+            this.lblColCountStarPH.Size = new System.Drawing.Size(0, 22);
+            this.lblColCountStarPH.TabIndex = 20;
+            // 
+            // lblColCountStarYTD
+            // 
+            this.lblColCountStarYTD.AutoSize = true;
+            this.lblColCountStarYTD.Font = new System.Drawing.Font("Dubai", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColCountStarYTD.ForeColor = System.Drawing.Color.Maroon;
+            this.lblColCountStarYTD.Location = new System.Drawing.Point(574, 369);
+            this.lblColCountStarYTD.Name = "lblColCountStarYTD";
+            this.lblColCountStarYTD.Size = new System.Drawing.Size(0, 22);
+            this.lblColCountStarYTD.TabIndex = 21;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -460,6 +508,10 @@
         private Telerik.WinControls.UI.RadButton btnDownloadPayCodesYTD;
         private System.Windows.Forms.SaveFileDialog sfdPHPayCodes;
         private System.Windows.Forms.SaveFileDialog sfdYtdPayCodes;
+        private System.Windows.Forms.Label lblColCountStarYTD;
+        private System.Windows.Forms.Label lblColCountStarPH;
+        private System.Windows.Forms.Label lblColCountPRYTD;
+        private System.Windows.Forms.Label lblColCountPRPH;
     }
 }
 

@@ -18,7 +18,7 @@ namespace Comparison_Tool_v2
         string payrunioYTD;
         bool ytdSuccess = true;
 
-        string saveFileCompanyNumber;
+        string saveFileCompanyNumber; //this is to hold the company number for the save file dialogs
 
         public Form1()
         {
@@ -748,7 +748,16 @@ namespace Comparison_Tool_v2
             string file = openfiledialog.FileName;
             lblPayHistoryPR.Text = file.Substring(file.LastIndexOf('\\') + 1);
             toolTip1.SetToolTip(lblPayHistoryPR, file);
-            saveFileCompanyNumber = file.Substring(file.LastIndexOf('\\') + 1).Substring(0, 4);
+            try
+            {
+                saveFileCompanyNumber = file.Substring(file.LastIndexOf('\\') + 1).Substring(0, 4);
+
+                string[] lines = File.ReadAllLines(file);
+                int rows = lines.Length;
+                int columns = lines[0].Split(',').Length;
+                lblColCountPRPH.Text = $"ColCount : {Convert.ToString(columns)}";
+            }
+            catch (Exception ex){ }
         }
         /// <summary>
         /// user selecthing the file to upload
@@ -765,6 +774,15 @@ namespace Comparison_Tool_v2
             string file = openfiledialog.FileName;
             lblYearToDatePR.Text = file.Substring(file.LastIndexOf('\\') + 1);
             toolTip1.SetToolTip(lblYearToDatePR, file);
+            try
+            {
+
+                string[] lines = File.ReadAllLines(file);
+                int rows = lines.Length;
+                int columns = lines[0].Split(',').Length;
+                lblColCountPRYTD.Text = $"ColCount : {Convert.ToString(columns)}";
+            }
+            catch (Exception ex) { }
         }
         /// <summary>
         /// user selecthing the file to upload
@@ -781,6 +799,14 @@ namespace Comparison_Tool_v2
             string file = openfiledialog.FileName;
             lblPayHistoryStar.Text = file.Substring(file.LastIndexOf('\\') + 1);
             toolTip1.SetToolTip(lblPayHistoryStar, file);
+            try
+            {
+                string[] lines = File.ReadAllLines(file);
+                int rows = lines.Length;
+                int columns = lines[0].Split(',').Length;
+                lblColCountStarPH.Text = $"ColCount : {Convert.ToString(columns)}";
+            }
+            catch (Exception ex) { }
         }
         /// <summary>
         /// user selecthing the file to upload
@@ -797,6 +823,14 @@ namespace Comparison_Tool_v2
             string file = openfiledialog.FileName;
             lblYearToDateStar.Text = file.Substring(file.LastIndexOf('\\') + 1);
             toolTip1.SetToolTip(lblYearToDateStar, file);
+            try
+            {
+                string[] lines = File.ReadAllLines(file);
+                int rows = lines.Length;
+                int columns = lines[0].Split(',').Length;
+                lblColCountStarYTD.Text = $"ColCount : {Convert.ToString(columns)}";
+            }
+            catch (Exception ex) { }
         }
         /// <summary>
         /// user selecthing the file to upload
@@ -808,6 +842,10 @@ namespace Comparison_Tool_v2
             lblPayHistoryStar.Text = "";
             lblYearToDatePR.Text = "";
             lblYearToDateStar.Text = "";
+            lblColCountPRPH.Text = "";
+            lblColCountPRYTD.Text = "";
+            lblColCountStarPH.Text = "";
+            lblColCountStarYTD.Text = "";
 
             starPH = null;
             starYTD = null;
