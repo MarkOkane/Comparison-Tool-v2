@@ -46,15 +46,19 @@
             this.btnPayHistoryStar = new Telerik.WinControls.UI.RadButton();
             this.btnPayHistoryPR = new Telerik.WinControls.UI.RadButton();
             this.tabPH = new System.Windows.Forms.TabPage();
+            this.btnDownloadPayCodesPH = new Telerik.WinControls.UI.RadButton();
             this.btnDownloadPH = new Telerik.WinControls.UI.RadButton();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tabYTD = new System.Windows.Forms.TabPage();
+            this.btnDownloadPayCodesYTD = new Telerik.WinControls.UI.RadButton();
             this.btnDownloadYTD = new Telerik.WinControls.UI.RadButton();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.sfdPH = new System.Windows.Forms.SaveFileDialog();
             this.sfdYTD = new System.Windows.Forms.SaveFileDialog();
+            this.sfdPHPayCodes = new System.Windows.Forms.SaveFileDialog();
+            this.sfdYtdPayCodes = new System.Windows.Forms.SaveFileDialog();
             this.tabControl.SuspendLayout();
             this.tabImport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnYearToDateStar)).BeginInit();
@@ -62,8 +66,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnPayHistoryStar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPayHistoryPR)).BeginInit();
             this.tabPH.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDownloadPayCodesPH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDownloadPH)).BeginInit();
             this.tabYTD.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDownloadPayCodesYTD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDownloadYTD)).BeginInit();
             this.SuspendLayout();
             // 
@@ -247,6 +253,7 @@
             // tabPH
             // 
             this.tabPH.BackColor = System.Drawing.Color.White;
+            this.tabPH.Controls.Add(this.btnDownloadPayCodesPH);
             this.tabPH.Controls.Add(this.btnDownloadPH);
             this.tabPH.Controls.Add(this.label4);
             this.tabPH.Controls.Add(this.label2);
@@ -257,11 +264,25 @@
             this.tabPH.TabIndex = 1;
             this.tabPH.Text = "Pay History";
             // 
+            // btnDownloadPayCodesPH
+            // 
+            this.btnDownloadPayCodesPH.BackColor = System.Drawing.Color.White;
+            this.btnDownloadPayCodesPH.Font = new System.Drawing.Font("Dubai", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDownloadPayCodesPH.Location = new System.Drawing.Point(267, 165);
+            this.btnDownloadPayCodesPH.Name = "btnDownloadPayCodesPH";
+            this.btnDownloadPayCodesPH.Size = new System.Drawing.Size(141, 60);
+            this.btnDownloadPayCodesPH.TabIndex = 19;
+            this.btnDownloadPayCodesPH.Text = "Download PH PayCodes Report";
+            this.btnDownloadPayCodesPH.TextWrap = true;
+            this.btnDownloadPayCodesPH.Click += new System.EventHandler(this.btnDownloadPayCodesPH_Click);
+            this.btnDownloadPayCodesPH.MouseEnter += new System.EventHandler(this.btnDownloadPayCodesPH_MouseEnter);
+            this.btnDownloadPayCodesPH.MouseLeave += new System.EventHandler(this.btnDownloadPayCodesPH_MouseLeave);
+            // 
             // btnDownloadPH
             // 
             this.btnDownloadPH.BackColor = System.Drawing.Color.White;
             this.btnDownloadPH.Font = new System.Drawing.Font("Dubai", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDownloadPH.Location = new System.Drawing.Point(267, 206);
+            this.btnDownloadPH.Location = new System.Drawing.Point(267, 248);
             this.btnDownloadPH.Name = "btnDownloadPH";
             this.btnDownloadPH.Size = new System.Drawing.Size(141, 60);
             this.btnDownloadPH.TabIndex = 18;
@@ -290,6 +311,7 @@
             // 
             // tabYTD
             // 
+            this.tabYTD.Controls.Add(this.btnDownloadPayCodesYTD);
             this.tabYTD.Controls.Add(this.btnDownloadYTD);
             this.tabYTD.Controls.Add(this.label5);
             this.tabYTD.Controls.Add(this.label3);
@@ -301,11 +323,25 @@
             this.tabYTD.Text = "YTD";
             this.tabYTD.UseVisualStyleBackColor = true;
             // 
+            // btnDownloadPayCodesYTD
+            // 
+            this.btnDownloadPayCodesYTD.BackColor = System.Drawing.Color.White;
+            this.btnDownloadPayCodesYTD.Font = new System.Drawing.Font("Dubai", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDownloadPayCodesYTD.Location = new System.Drawing.Point(267, 165);
+            this.btnDownloadPayCodesYTD.Name = "btnDownloadPayCodesYTD";
+            this.btnDownloadPayCodesYTD.Size = new System.Drawing.Size(141, 60);
+            this.btnDownloadPayCodesYTD.TabIndex = 20;
+            this.btnDownloadPayCodesYTD.Text = "Download YTD PayCodes Report";
+            this.btnDownloadPayCodesYTD.TextWrap = true;
+            this.btnDownloadPayCodesYTD.Click += new System.EventHandler(this.btnDownloadPayCodesYTD_Click);
+            this.btnDownloadPayCodesYTD.MouseEnter += new System.EventHandler(this.btnDownloadPayCodesYTD_MouseEnter);
+            this.btnDownloadPayCodesYTD.MouseLeave += new System.EventHandler(this.btnDownloadPayCodesYTD_MouseLeave);
+            // 
             // btnDownloadYTD
             // 
             this.btnDownloadYTD.BackColor = System.Drawing.Color.White;
             this.btnDownloadYTD.Font = new System.Drawing.Font("Dubai", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDownloadYTD.Location = new System.Drawing.Point(267, 206);
+            this.btnDownloadYTD.Location = new System.Drawing.Point(267, 248);
             this.btnDownloadYTD.Name = "btnDownloadYTD";
             this.btnDownloadYTD.Size = new System.Drawing.Size(141, 60);
             this.btnDownloadYTD.TabIndex = 19;
@@ -348,6 +384,22 @@
             this.sfdYTD.RestoreDirectory = true;
             this.sfdYTD.Title = "Please choose a location to save your report";
             // 
+            // sfdPHPayCodes
+            // 
+            this.sfdPHPayCodes.DefaultExt = "CSV";
+            this.sfdPHPayCodes.FileName = "_PhPayCodes.csv";
+            this.sfdPHPayCodes.Filter = "CSV Files (*.csv)|*.csv|All files (*.*)|*.*";
+            this.sfdPHPayCodes.RestoreDirectory = true;
+            this.sfdPHPayCodes.Title = "Please choose a location to save your report";
+            // 
+            // sfdYtdPayCodes
+            // 
+            this.sfdYtdPayCodes.DefaultExt = "CSV";
+            this.sfdYtdPayCodes.FileName = "_YtdPayCodes.csv";
+            this.sfdYtdPayCodes.Filter = "CSV Files (*.csv)|*.csv|All files (*.*)|*.*";
+            this.sfdYtdPayCodes.RestoreDirectory = true;
+            this.sfdYtdPayCodes.Title = "Please choose a location to save your report";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -368,9 +420,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnPayHistoryPR)).EndInit();
             this.tabPH.ResumeLayout(false);
             this.tabPH.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDownloadPayCodesPH)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDownloadPH)).EndInit();
             this.tabYTD.ResumeLayout(false);
             this.tabYTD.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDownloadPayCodesYTD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDownloadYTD)).EndInit();
             this.ResumeLayout(false);
 
@@ -402,6 +456,10 @@
         private Telerik.WinControls.UI.RadButton btnDownloadYTD;
         private System.Windows.Forms.SaveFileDialog sfdPH;
         private System.Windows.Forms.SaveFileDialog sfdYTD;
+        private Telerik.WinControls.UI.RadButton btnDownloadPayCodesPH;
+        private Telerik.WinControls.UI.RadButton btnDownloadPayCodesYTD;
+        private System.Windows.Forms.SaveFileDialog sfdPHPayCodes;
+        private System.Windows.Forms.SaveFileDialog sfdYtdPayCodes;
     }
 }
 

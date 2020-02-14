@@ -10,7 +10,6 @@ namespace Comparison_Tool_v2
 {
     public partial class Form1 : Form
     {
-        //Change
         string starPH;
         string starYTD;
         bool phSuccess = true;
@@ -462,7 +461,7 @@ namespace Comparison_Tool_v2
                                                              "VALUES (@Co, @RunDate, @Process, @Batch, @EeRef, @LeaveDate, @Leaver, @TaxPreviousEmt, @TaxablePayPreviousEmt, @TaxThisEmt, @TaxablePayThisEmt, @GrossedUp, @GrossedUpTax, @NetPay, @GrossYTD, @BenefitInKind, @Superannuation, @HolidayPay, @ErPensionYTD, @EePensionYTD, @AEOYTD, @StudentLoanStartDate, @StudentLoanEndDate, @StudentLoanDeductions, @NILetter, @Total, @EarningsToLEL, @EarningsToSET, @EarningsToPET, @EarningsToUST, @EarningsToAUST, @EarningsToUEL, @EarningsAboveUEL, @EeContributionsPt1, @EeContributionsPt2, @ErContributions, @EeRebate, @ErRebate, @EeReduction, @PayCode, @Det, @PayCodeValue, @PayCodeDesc, @AccYearBal, @PAYEYearBal, @AccYearUnits, @PAYEYearUnits, @TaxCode, @Week1Month1, @WeekNumber, @MonthNumber, @NIEarningsYTD, @StudentLoanPlanType, @PostgraduateLoanStartDate, @PostgraduateLoanEndDate, @PostgraduateLoanDeducted)");
 
                             SqlCommand command = new SqlCommand(insertQuery);
-
+                            
                             command.Connection = connection;
 
                             command.Parameters.AddWithValue("@Co", csvValues[0]);
@@ -695,6 +694,42 @@ namespace Comparison_Tool_v2
         {
             btnDownloadYTD.BackColor = Color.White;
             btnDownloadYTD.ForeColor = Color.FromArgb(21, 66, 139);
+        }
+        /// <summary>
+        /// hover effect
+        /// </summary>
+
+        private void btnDownloadPayCodesYTD_MouseEnter(object sender, EventArgs e)
+        {
+            btnDownloadPayCodesYTD.BackColor = Color.FromArgb(21, 66, 139);
+            btnDownloadPayCodesYTD.ForeColor = Color.White;
+        }
+        /// <summary>
+        /// hover effect
+        /// </summary>
+
+        private void btnDownloadPayCodesYTD_MouseLeave(object sender, EventArgs e)
+        {
+            btnDownloadPayCodesYTD.BackColor = Color.White;
+            btnDownloadPayCodesYTD.ForeColor = Color.FromArgb(21, 66, 139);
+        }
+        /// <summary>
+        /// hover effect
+        /// </summary>
+
+        private void btnDownloadPayCodesPH_MouseEnter(object sender, EventArgs e)
+        {
+            btnDownloadPayCodesPH.BackColor = Color.FromArgb(21, 66, 139);
+            btnDownloadPayCodesPH.ForeColor = Color.White;
+        }
+        /// <summary>
+        /// hover effect
+        /// </summary>
+
+        private void btnDownloadPayCodesPH_MouseLeave(object sender, EventArgs e)
+        {
+            btnDownloadPayCodesPH.BackColor = Color.White;
+            btnDownloadPayCodesPH.ForeColor = Color.FromArgb(21, 66, 139);
         }
         /// <summary>
         /// hover effect
@@ -973,6 +1008,124 @@ namespace Comparison_Tool_v2
         }
         /// <summary>
         /// downloading the differences in the YTD files
+        /// </summary>
+
+        private void btnDownloadPayCodesPH_Click(object sender, EventArgs e)
+        {
+            DataSet sqlDataSet = new DataSet();
+            string queryPath = "J:\\Shared Data\\Data\\Queries\\SQL\\";
+            string query;
+
+            using (StreamReader stream = new StreamReader(queryPath + "comparisonPayHistoryPayCodes.sql"))
+            {
+                query = stream.ReadToEnd();
+            }
+
+            string connectionString = "Data Source = PESCAPE-SRV1\\SQL2012STAR; Initial Catalog = Unity; User ID = sa; Password = JB20soft14;";
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+            try
+            {
+                sqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+                sqlDataAdapter.Fill(sqlDataSet, "comparisonPHPayCodes");
+                sqlCommand.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to retrieve YTD Data.\r\n\r\n" + ex);
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlConnection.Dispose();
+            }
+
+            if (sfdPHPayCodes.ShowDialog() == DialogResult.OK)
+            {
+                DataRowCollection rows = sqlDataSet.Tables["comparisonPHPayCodes"].Rows;
+                int columnCount = sqlDataSet.Tables["comparisonPHPayCodes"].Columns.Count;
+                string csvLine = "";
+
+                using (StreamWriter writer = new StreamWriter(sfdPHPayCodes.FileName))
+                {
+                    writer.WriteLine("EeRef, StarPayCodeDesc, PayRunioPayCodeDesc, StarPayCodeValue, PayRunioPayCodeValue");
+
+                    foreach (DataRow row in rows)
+                    {
+                        for (int i = 0; i < columnCount; i++)
+                        {
+                            csvLine = csvLine + row[i] + ",";
+                        }
+                        writer.WriteLine(csvLine);
+                        csvLine = "";
+                    }
+                    sqlDataSet.Tables["comparisonPHPayCodes"].Clear();
+                    MessageBox.Show("Report Created Successfully");
+                }
+            }
+        }
+        /// <summary>
+        /// downloading the paycode differences in the payhistory file
+        /// </summary>
+
+        private void btnDownloadPayCodesYTD_Click(object sender, EventArgs e)
+        {
+            DataSet sqlDataSet = new DataSet();
+            string queryPath = "J:\\Shared Data\\Data\\Queries\\SQL\\";
+            string query;
+
+            using (StreamReader stream = new StreamReader(queryPath + "comparisonYTDPaycodes.sql"))
+            {
+                query = stream.ReadToEnd();
+            }
+
+            string connectionString = "Data Source = PESCAPE-SRV1\\SQL2012STAR; Initial Catalog = Unity; User ID = sa; Password = JB20soft14;";
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+            try
+            {
+                sqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+                sqlDataAdapter.Fill(sqlDataSet, "comparisonYTDPayCodes");
+                sqlCommand.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to retrieve YTD Data.\r\n\r\n" + ex);
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlConnection.Dispose();
+            }
+
+            if (sfdYtdPayCodes.ShowDialog() == DialogResult.OK)
+            {
+                DataRowCollection rows = sqlDataSet.Tables["comparisonYTDPayCodes"].Rows;
+                int columnCount = sqlDataSet.Tables["comparisonYTDPayCodes"].Columns.Count;
+                string csvLine = "";
+
+                using (StreamWriter writer = new StreamWriter(sfdYtdPayCodes.FileName))
+                {
+                    writer.WriteLine("EeRef, StarPayCodeDesc, PayRunioPayCodeDesc, StarPayCodeValue, PayRunioPayCodeValue");
+
+                    foreach (DataRow row in rows)
+                    {
+                        for (int i = 0; i < columnCount; i++)
+                        {
+                            csvLine = csvLine + row[i] + ",";
+                        }
+                        writer.WriteLine(csvLine);
+                        csvLine = "";
+                    }
+                    sqlDataSet.Tables["comparisonYTDPayCodes"].Clear();
+                    MessageBox.Show("Report Created Successfully");
+                }
+            }
+        }
+        /// <summary>
+        /// downloading the paycode differences in the ytd file
         /// </summary>
     }
 }
