@@ -18,6 +18,8 @@ namespace Comparison_Tool_v2
         string payrunioYTD;
         bool ytdSuccess = true;
 
+        string saveFileCompanyNumber;
+
         public Form1()
         {
             InitializeComponent();
@@ -746,6 +748,7 @@ namespace Comparison_Tool_v2
             string file = openfiledialog.FileName;
             lblPayHistoryPR.Text = file.Substring(file.LastIndexOf('\\') + 1);
             toolTip1.SetToolTip(lblPayHistoryPR, file);
+            saveFileCompanyNumber = file.Substring(file.LastIndexOf('\\') + 1).Substring(0, 4);
         }
         /// <summary>
         /// user selecthing the file to upload
@@ -923,6 +926,8 @@ namespace Comparison_Tool_v2
                 sqlConnection.Dispose();
             }
 
+            sfdPH.FileName = saveFileCompanyNumber + "_PayHistoryDifferences.csv";
+
             if (sfdPH.ShowDialog() == DialogResult.OK)
             {
                 DataRowCollection rows = sqlDataSet.Tables["comparisonPH"].Rows;
@@ -981,6 +986,8 @@ namespace Comparison_Tool_v2
                 sqlConnection.Close();
                 sqlConnection.Dispose();
             }
+
+            sfdYTD.FileName = saveFileCompanyNumber + "_YTDDifferences.csv";
 
             if (sfdYTD.ShowDialog() == DialogResult.OK)
             {
@@ -1041,6 +1048,8 @@ namespace Comparison_Tool_v2
                 sqlConnection.Dispose();
             }
 
+            sfdPHPayCodes.FileName = saveFileCompanyNumber + "_PhPayCodes.csv";
+
             if (sfdPHPayCodes.ShowDialog() == DialogResult.OK)
             {
                 DataRowCollection rows = sqlDataSet.Tables["comparisonPHPayCodes"].Rows;
@@ -1099,6 +1108,8 @@ namespace Comparison_Tool_v2
                 sqlConnection.Close();
                 sqlConnection.Dispose();
             }
+
+            sfdYtdPayCodes.FileName = saveFileCompanyNumber + "_YtdPayCodes.csv";
 
             if (sfdYtdPayCodes.ShowDialog() == DialogResult.OK)
             {
