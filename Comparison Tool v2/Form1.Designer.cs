@@ -38,6 +38,14 @@
             this.lblClear = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabImport = new System.Windows.Forms.TabPage();
+            this.lblRowCountPrPH = new System.Windows.Forms.Label();
+            this.lblRowCountStarPH = new System.Windows.Forms.Label();
+            this.lblRowCountStarYTD = new System.Windows.Forms.Label();
+            this.lblRowCountPrYTD = new System.Windows.Forms.Label();
+            this.lblColCountStarYTD = new System.Windows.Forms.Label();
+            this.lblColCountStarPH = new System.Windows.Forms.Label();
+            this.lblColCountPRYTD = new System.Windows.Forms.Label();
+            this.lblColCountPRPH = new System.Windows.Forms.Label();
             this.lblImportYTD = new System.Windows.Forms.Label();
             this.lblImportPH = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -59,10 +67,6 @@
             this.sfdYTD = new System.Windows.Forms.SaveFileDialog();
             this.sfdPHPayCodes = new System.Windows.Forms.SaveFileDialog();
             this.sfdYtdPayCodes = new System.Windows.Forms.SaveFileDialog();
-            this.lblColCountPRPH = new System.Windows.Forms.Label();
-            this.lblColCountPRYTD = new System.Windows.Forms.Label();
-            this.lblColCountStarPH = new System.Windows.Forms.Label();
-            this.lblColCountStarYTD = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabImport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnYearToDateStar)).BeginInit();
@@ -144,6 +148,10 @@
             // tabImport
             // 
             this.tabImport.BackColor = System.Drawing.Color.White;
+            this.tabImport.Controls.Add(this.lblRowCountPrPH);
+            this.tabImport.Controls.Add(this.lblRowCountStarPH);
+            this.tabImport.Controls.Add(this.lblRowCountStarYTD);
+            this.tabImport.Controls.Add(this.lblRowCountPrYTD);
             this.tabImport.Controls.Add(this.lblColCountStarYTD);
             this.tabImport.Controls.Add(this.lblColCountStarPH);
             this.tabImport.Controls.Add(this.lblColCountPRYTD);
@@ -168,6 +176,86 @@
             this.tabImport.Size = new System.Drawing.Size(674, 473);
             this.tabImport.TabIndex = 0;
             this.tabImport.Text = "Import";
+            // 
+            // lblRowCountPrPH
+            // 
+            this.lblRowCountPrPH.AutoSize = true;
+            this.lblRowCountPrPH.Font = new System.Drawing.Font("Dubai", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRowCountPrPH.ForeColor = System.Drawing.Color.Maroon;
+            this.lblRowCountPrPH.Location = new System.Drawing.Point(575, 94);
+            this.lblRowCountPrPH.Name = "lblRowCountPrPH";
+            this.lblRowCountPrPH.Size = new System.Drawing.Size(0, 22);
+            this.lblRowCountPrPH.TabIndex = 25;
+            // 
+            // lblRowCountStarPH
+            // 
+            this.lblRowCountStarPH.AutoSize = true;
+            this.lblRowCountStarPH.Font = new System.Drawing.Font("Dubai", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRowCountStarPH.ForeColor = System.Drawing.Color.Maroon;
+            this.lblRowCountStarPH.Location = new System.Drawing.Point(575, 278);
+            this.lblRowCountStarPH.Name = "lblRowCountStarPH";
+            this.lblRowCountStarPH.Size = new System.Drawing.Size(0, 22);
+            this.lblRowCountStarPH.TabIndex = 24;
+            // 
+            // lblRowCountStarYTD
+            // 
+            this.lblRowCountStarYTD.AutoSize = true;
+            this.lblRowCountStarYTD.Font = new System.Drawing.Font("Dubai", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRowCountStarYTD.ForeColor = System.Drawing.Color.Maroon;
+            this.lblRowCountStarYTD.Location = new System.Drawing.Point(575, 370);
+            this.lblRowCountStarYTD.Name = "lblRowCountStarYTD";
+            this.lblRowCountStarYTD.Size = new System.Drawing.Size(0, 22);
+            this.lblRowCountStarYTD.TabIndex = 23;
+            // 
+            // lblRowCountPrYTD
+            // 
+            this.lblRowCountPrYTD.AutoSize = true;
+            this.lblRowCountPrYTD.Font = new System.Drawing.Font("Dubai", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRowCountPrYTD.ForeColor = System.Drawing.Color.Maroon;
+            this.lblRowCountPrYTD.Location = new System.Drawing.Point(575, 186);
+            this.lblRowCountPrYTD.Name = "lblRowCountPrYTD";
+            this.lblRowCountPrYTD.Size = new System.Drawing.Size(0, 22);
+            this.lblRowCountPrYTD.TabIndex = 22;
+            // 
+            // lblColCountStarYTD
+            // 
+            this.lblColCountStarYTD.AutoSize = true;
+            this.lblColCountStarYTD.Font = new System.Drawing.Font("Dubai", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColCountStarYTD.ForeColor = System.Drawing.Color.Maroon;
+            this.lblColCountStarYTD.Location = new System.Drawing.Point(575, 348);
+            this.lblColCountStarYTD.Name = "lblColCountStarYTD";
+            this.lblColCountStarYTD.Size = new System.Drawing.Size(0, 22);
+            this.lblColCountStarYTD.TabIndex = 21;
+            // 
+            // lblColCountStarPH
+            // 
+            this.lblColCountStarPH.AutoSize = true;
+            this.lblColCountStarPH.Font = new System.Drawing.Font("Dubai", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColCountStarPH.ForeColor = System.Drawing.Color.Maroon;
+            this.lblColCountStarPH.Location = new System.Drawing.Point(575, 256);
+            this.lblColCountStarPH.Name = "lblColCountStarPH";
+            this.lblColCountStarPH.Size = new System.Drawing.Size(0, 22);
+            this.lblColCountStarPH.TabIndex = 20;
+            // 
+            // lblColCountPRYTD
+            // 
+            this.lblColCountPRYTD.AutoSize = true;
+            this.lblColCountPRYTD.Font = new System.Drawing.Font("Dubai", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColCountPRYTD.ForeColor = System.Drawing.Color.Maroon;
+            this.lblColCountPRYTD.Location = new System.Drawing.Point(575, 164);
+            this.lblColCountPRYTD.Name = "lblColCountPRYTD";
+            this.lblColCountPRYTD.Size = new System.Drawing.Size(0, 22);
+            this.lblColCountPRYTD.TabIndex = 19;
+            // 
+            // lblColCountPRPH
+            // 
+            this.lblColCountPRPH.AutoSize = true;
+            this.lblColCountPRPH.Font = new System.Drawing.Font("Dubai", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColCountPRPH.ForeColor = System.Drawing.Color.Maroon;
+            this.lblColCountPRPH.Location = new System.Drawing.Point(575, 72);
+            this.lblColCountPRPH.Name = "lblColCountPRPH";
+            this.lblColCountPRPH.Size = new System.Drawing.Size(0, 22);
+            this.lblColCountPRPH.TabIndex = 18;
             // 
             // lblImportYTD
             // 
@@ -408,46 +496,6 @@
             this.sfdYtdPayCodes.RestoreDirectory = true;
             this.sfdYtdPayCodes.Title = "Please choose a location to save your report";
             // 
-            // lblColCountPRPH
-            // 
-            this.lblColCountPRPH.AutoSize = true;
-            this.lblColCountPRPH.Font = new System.Drawing.Font("Dubai", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColCountPRPH.ForeColor = System.Drawing.Color.Maroon;
-            this.lblColCountPRPH.Location = new System.Drawing.Point(574, 93);
-            this.lblColCountPRPH.Name = "lblColCountPRPH";
-            this.lblColCountPRPH.Size = new System.Drawing.Size(0, 22);
-            this.lblColCountPRPH.TabIndex = 18;
-            // 
-            // lblColCountPRYTD
-            // 
-            this.lblColCountPRYTD.AutoSize = true;
-            this.lblColCountPRYTD.Font = new System.Drawing.Font("Dubai", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColCountPRYTD.ForeColor = System.Drawing.Color.Maroon;
-            this.lblColCountPRYTD.Location = new System.Drawing.Point(574, 185);
-            this.lblColCountPRYTD.Name = "lblColCountPRYTD";
-            this.lblColCountPRYTD.Size = new System.Drawing.Size(0, 22);
-            this.lblColCountPRYTD.TabIndex = 19;
-            // 
-            // lblColCountStarPH
-            // 
-            this.lblColCountStarPH.AutoSize = true;
-            this.lblColCountStarPH.Font = new System.Drawing.Font("Dubai", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColCountStarPH.ForeColor = System.Drawing.Color.Maroon;
-            this.lblColCountStarPH.Location = new System.Drawing.Point(574, 277);
-            this.lblColCountStarPH.Name = "lblColCountStarPH";
-            this.lblColCountStarPH.Size = new System.Drawing.Size(0, 22);
-            this.lblColCountStarPH.TabIndex = 20;
-            // 
-            // lblColCountStarYTD
-            // 
-            this.lblColCountStarYTD.AutoSize = true;
-            this.lblColCountStarYTD.Font = new System.Drawing.Font("Dubai", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColCountStarYTD.ForeColor = System.Drawing.Color.Maroon;
-            this.lblColCountStarYTD.Location = new System.Drawing.Point(574, 369);
-            this.lblColCountStarYTD.Name = "lblColCountStarYTD";
-            this.lblColCountStarYTD.Size = new System.Drawing.Size(0, 22);
-            this.lblColCountStarYTD.TabIndex = 21;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -512,6 +560,10 @@
         private System.Windows.Forms.Label lblColCountStarPH;
         private System.Windows.Forms.Label lblColCountPRYTD;
         private System.Windows.Forms.Label lblColCountPRPH;
+        private System.Windows.Forms.Label lblRowCountPrYTD;
+        private System.Windows.Forms.Label lblRowCountPrPH;
+        private System.Windows.Forms.Label lblRowCountStarPH;
+        private System.Windows.Forms.Label lblRowCountStarYTD;
     }
 }
 

@@ -755,12 +755,15 @@ namespace Comparison_Tool_v2
                 string[] lines = File.ReadAllLines(file);
                 int rows = lines.Length;
                 int columns = lines[0].Split(',').Length;
-                lblColCountPRPH.Text = $"ColCount : {Convert.ToString(columns)}";
+                int row1 = lines[1].Split(',').Length;
+                lblColCountPRPH.Text = $"ColCount : {columns}";
+                lblRowCountPrPH.Text = $"RowCount : {row1}";
             }
             catch (Exception ex){ }
         }
         /// <summary>
         /// user selecthing the file to upload
+        /// count the columns and columns in the first row
         /// </summary>
 
         private void btnYearToDatePR_Click(object sender, EventArgs e)
@@ -776,16 +779,20 @@ namespace Comparison_Tool_v2
             toolTip1.SetToolTip(lblYearToDatePR, file);
             try
             {
+                saveFileCompanyNumber = file.Substring(file.LastIndexOf('\\') + 1).Substring(0, 4);
 
                 string[] lines = File.ReadAllLines(file);
                 int rows = lines.Length;
                 int columns = lines[0].Split(',').Length;
-                lblColCountPRYTD.Text = $"ColCount : {Convert.ToString(columns)}";
+                int row1 = lines[1].Split(',').Length;
+                lblColCountPRYTD.Text = $"ColCount : {columns}";
+                lblRowCountPrYTD.Text = $"RowCount : {row1}";
             }
             catch (Exception ex) { }
         }
         /// <summary>
         /// user selecthing the file to upload
+        /// count the columns and columns in the first row
         /// </summary>
 
         private void btnPayHistoryStar_Click(object sender, EventArgs e)
@@ -804,12 +811,15 @@ namespace Comparison_Tool_v2
                 string[] lines = File.ReadAllLines(file);
                 int rows = lines.Length;
                 int columns = lines[0].Split(',').Length;
-                lblColCountStarPH.Text = $"ColCount : {Convert.ToString(columns)}";
+                int row1 = lines[1].Split(',').Length;
+                lblColCountStarPH.Text = $"ColCount : {columns}";
+                lblRowCountStarPH.Text = $"RowCount : {row1}";
             }
             catch (Exception ex) { }
         }
         /// <summary>
         /// user selecthing the file to upload
+        /// count the columns and the columns in the first row
         /// </summary>
 
         private void btnYearToDateStar_Click(object sender, EventArgs e)
@@ -828,12 +838,15 @@ namespace Comparison_Tool_v2
                 string[] lines = File.ReadAllLines(file);
                 int rows = lines.Length;
                 int columns = lines[0].Split(',').Length;
-                lblColCountStarYTD.Text = $"ColCount : {Convert.ToString(columns)}";
+                int row1 = lines[1].Split(',').Length;
+                lblColCountStarYTD.Text = $"ColCount : {columns}";
+                lblRowCountStarYTD.Text = $"RowCount : {row1}";
             }
             catch (Exception ex) { }
         }
         /// <summary>
         /// user selecthing the file to upload
+        /// count the columns and the columns in the first row
         /// </summary>
 
         private void lblClear_Click(object sender, EventArgs e)
@@ -846,6 +859,10 @@ namespace Comparison_Tool_v2
             lblColCountPRYTD.Text = "";
             lblColCountStarPH.Text = "";
             lblColCountStarYTD.Text = "";
+            lblRowCountPrPH.Text = "";
+            lblRowCountPrYTD.Text = "";
+            lblRowCountStarPH.Text = "";
+            lblRowCountStarYTD.Text = "";
 
             starPH = null;
             starYTD = null;
