@@ -6,6 +6,13 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
+/// <summary>
+/// Comparing the differences between the Payrun.IO PayHistory + YTD Files and the Star Files
+/// import the files to database
+/// execute comparison queries
+/// user downloads reports
+/// </summary>
+
 namespace Comparison_Tool_v2
 {
     public partial class Form1 : Form
@@ -19,6 +26,7 @@ namespace Comparison_Tool_v2
         bool ytdSuccess = true;
 
         string saveFileCompanyNumber; //this is to hold the company number for the save file dialogs
+        string user;
 
         public Form1()
         {
@@ -29,11 +37,22 @@ namespace Comparison_Tool_v2
         {
             tabControl.TabPages.Remove(tabPH);
             tabControl.TabPages.Remove(tabYTD);
+            tabControl.TabPages.Remove(tabImport);
         }
 
         private void ClearStarPayHistory()
         {
-            string query = "DELETE FROM starPayHistory;";
+            string table = null;
+            if (lblUser.Text == "Sandie")
+            {
+                table = "starPayHistory;";
+            }
+            else if (lblUser.Text == "IT Team")
+            {
+                table = "starPayHistoryIT;";
+            }
+
+            string query = $"DELETE FROM {table}";
 
             string sqlConnectionString = "Data Source = PESCAPE-SRV1\\SQL2012STAR; Initial Catalog = Unity; User ID = sa; Password = JB20soft14";
             SqlConnection sqlConnection = new SqlConnection(sqlConnectionString);
@@ -49,7 +68,17 @@ namespace Comparison_Tool_v2
 
         private void ClearPayRunPayHistory()
         {
-            string query = "DELETE FROM payRunPayHistory;";
+            string table = null;
+            if(lblUser.Text == "Sandie")
+            {
+                table = "payRunPayHistory;";
+            }
+            else if (lblUser.Text == "IT Team")
+            {
+                table = "payRunPayHistoryIT;";
+            }
+            
+            string query = $"DELETE FROM {table}";
 
             string sqlConnectionString = "Data Source = PESCAPE-SRV1\\SQL2012STAR; Initial Catalog = Unity; User ID = sa; Password = JB20soft14";
             SqlConnection sqlConnection = new SqlConnection(sqlConnectionString);
@@ -72,6 +101,16 @@ namespace Comparison_Tool_v2
             string line;
             string[] csvValues = new string[58];
 
+            string table = null;
+            if (lblUser.Text == "Sandie")
+            {
+                table = "starPayHistory";
+            }
+            else if (lblUser.Text == "IT Team")
+            {
+                table = "starPayHistoryIT";
+            }
+
             try
             {
                 string file = starPH;
@@ -86,7 +125,7 @@ namespace Comparison_Tool_v2
                         {
                             csvValues = Regex.Split(line, ",");
 
-                            string insertQuery = ("INSERT INTO starPayHistory (Co, RunDate, Period_Start_Date, Period_End_Date, Process, PayrollYear, EEid, Gross, NetPay, Batch, CheckVoucher, Account, Transit, DeptName, CostCentreName, BranchName, Days_Hours, StudentLoanStartDate, StudentLoanEndDate, StudentLoanDeductions, NI_Letter, Calculation_Basis, Total, Earnings_To_LEL, Earnings_To_SET, Earnings_To_PET, Earnings_To_UST, Earnings_To_AUST, Earnings_To_UEL, Earnings_Above_UEL, Ee_Contributions_Pt1, Ee_Contributions_Pt2, Er_Contributions, Ee_Rebate, Er_Rebate, Ee_Reduction, LeaveDate, Leaver, TaxCode, Week1_Month1, TaxCodeChangeTypeID, TaxCodeChangeType, TaxPreviousEmt, TaxablePayPreviousEmt, TaxThisEmt, TaxablePayThisEmt, PayCode, PayCodeDesc, PayCodeValue, Det, Rate, Hours, Amount, AccYearBal, PAYEYearBal, ACCYearUnits, PAYEYearUnits, PayrollAccrued) " +
+                            string insertQuery = ("INSERT INTO " + table + " (Co, RunDate, Period_Start_Date, Period_End_Date, Process, PayrollYear, EEid, Gross, NetPay, Batch, CheckVoucher, Account, Transit, DeptName, CostCentreName, BranchName, Days_Hours, StudentLoanStartDate, StudentLoanEndDate, StudentLoanDeductions, NI_Letter, Calculation_Basis, Total, Earnings_To_LEL, Earnings_To_SET, Earnings_To_PET, Earnings_To_UST, Earnings_To_AUST, Earnings_To_UEL, Earnings_Above_UEL, Ee_Contributions_Pt1, Ee_Contributions_Pt2, Er_Contributions, Ee_Rebate, Er_Rebate, Ee_Reduction, LeaveDate, Leaver, TaxCode, Week1_Month1, TaxCodeChangeTypeID, TaxCodeChangeType, TaxPreviousEmt, TaxablePayPreviousEmt, TaxThisEmt, TaxablePayThisEmt, PayCode, PayCodeDesc, PayCodeValue, Det, Rate, Hours, Amount, AccYearBal, PAYEYearBal, ACCYearUnits, PAYEYearUnits, PayrollAccrued) " +
                                                                 "VALUES (@Co, @runDate, @Period_Start_Date, @Period_End_Date, @process, @PayrollYear, @EEid, @Gross, @NetPay, @Batch, @CheckVoucher, @Account, @Transit, @DeptName, @CostCentreName, @branchName, @Days_Hours, @StudentLoanStartDate, @StudentLoanEndDate, @StudentLoanDeductions, @NI_Letter, @Calculation_Basis, @Total, @Earnings_To_LEL, @Earnings_To_SET, @Earnings_To_PET, @Earnings_To_UST, @Earnings_To_AUST, @Earnings_To_UEL, @Earnings_Above_UEL, @Ee_Contributions_Pt1, @Ee_Contributions_Pt2, @Er_Contributions, @Ee_Rebate, @Er_Rebate, @Ee_Reduction, @LeaveDate, @Leaver, @TaxCode, @Week1_Month1, @TaxCodeChangeTypeID, @TaxCodeChangeType, @TaxPreviousEmt, @TaxablePayPreviousEmt, @TaxThisEmt, @TaxablePayThisEmt, @PayCode, @payCodeDesc, @payCodeValue, @det, @rate, @hours, @Amount, @AccYearBal, @PAYEYearBal, @AccYearUnits, @PAYEYearUnits, @PayrollAccured)");
 
                             SqlCommand command = new SqlCommand(insertQuery);
@@ -182,6 +221,16 @@ namespace Comparison_Tool_v2
             string line;
             string[] csvValues = new string[58];
 
+            string table = null;
+            if (lblUser.Text == "Sandie")
+            {
+                table = "payRunPayHistory";
+            }
+            else if (lblUser.Text == "IT Team")
+            {
+                table = "payRunPayHistoryIT";
+            }
+
             try
             {
                 string file = payrunioPH;
@@ -201,7 +250,7 @@ namespace Comparison_Tool_v2
                                 csvValues[i] = csvValues[i].Replace(@"""", String.Empty);
                             }
 
-                            string insertQuery = ("INSERT INTO payRunPayHistory (Co, RunDate, Period_Start_Date, Period_End_Date, Process, PayrollYear, EEid, Gross, NetPay, Batch, CheckVoucher, Account, Transit, DeptName, CostCentreName, BranchName, Days_Hours, StudentLoanStartDate, StudentLoanEndDate, StudentLoanDeductions, NI_Letter, Calculation_Basis, Total, Earnings_To_LEL, Earnings_To_SET, Earnings_To_PET, Earnings_To_UST, Earnings_To_AUST, Earnings_To_UEL, Earnings_Above_UEL, Ee_Contributions_Pt1, Ee_Contributions_Pt2, Er_Contributions, Ee_Rebate, Er_Rebate, Ee_Reduction, LeaveDate, Leaver, TaxCode, Week1_Month1, TaxCodeChangeTypeID, TaxCodeChangeType, TaxPreviousEmt, TaxablePayPreviousEmt, TaxThisEmt, TaxablePayThisEmt, PayCode, PayCodeDesc, PayCodeValue, Det, Rate, Hours, Amount, AccYearBal, PAYEYearBal, ACCYearUnits, PAYEYearUnits, PayrollAccrued) " +
+                            string insertQuery = ("INSERT INTO " + table + " (Co, RunDate, Period_Start_Date, Period_End_Date, Process, PayrollYear, EEid, Gross, NetPay, Batch, CheckVoucher, Account, Transit, DeptName, CostCentreName, BranchName, Days_Hours, StudentLoanStartDate, StudentLoanEndDate, StudentLoanDeductions, NI_Letter, Calculation_Basis, Total, Earnings_To_LEL, Earnings_To_SET, Earnings_To_PET, Earnings_To_UST, Earnings_To_AUST, Earnings_To_UEL, Earnings_Above_UEL, Ee_Contributions_Pt1, Ee_Contributions_Pt2, Er_Contributions, Ee_Rebate, Er_Rebate, Ee_Reduction, LeaveDate, Leaver, TaxCode, Week1_Month1, TaxCodeChangeTypeID, TaxCodeChangeType, TaxPreviousEmt, TaxablePayPreviousEmt, TaxThisEmt, TaxablePayThisEmt, PayCode, PayCodeDesc, PayCodeValue, Det, Rate, Hours, Amount, AccYearBal, PAYEYearBal, ACCYearUnits, PAYEYearUnits, PayrollAccrued) " +
                                                                 "VALUES (@Co, @RunDate, @Period_Start_Date, @Period_End_Date, @Process, @PayrollYear, @EEid, @Gross, @NetPay, @Batch, @CheckVoucher, @Account, @Transit, @DeptName, @CostCentreName, @branchName, @Days_Hours, @StudentLoanStartDate, @StudentLoanEndDate, @StudentLoanDeductions, @NI_Letter, @Calculation_Basis, @Total, @Earnings_To_LEL, @Earnings_To_SET, @Earnings_To_PET, @Earnings_To_UST, @Earnings_To_AUST, @Earnings_To_UEL, @Earnings_Above_UEL, @Ee_Contributions_Pt1, @Ee_Contributions_Pt2, @Er_Contributions, @Ee_Rebate, @Er_Rebate, @Ee_Reduction, @LeaveDate, @Leaver, @TaxCode, @Week1_Month1, @TaxCodeChangeTypeID, @TaxCodeChangeType, @TaxPreviousEmt, @TaxablePayPreviousEmt, @TaxThisEmt, @TaxablePayThisEmt, @PayCode, @payCodeDesc, @payCodeValue, @det, @rate, @hours, @Amount, @AccYearBal, @PAYEYearBal, @AccYearUnits, @PAYEYearUnits, @PayrollAccured)");
 
                             SqlCommand command = new SqlCommand(insertQuery);
@@ -292,7 +341,17 @@ namespace Comparison_Tool_v2
 
         private void ClearPayRunYTD()
         {
-            string query = "DELETE FROM payRunYearToDates;";
+            string table = null;
+            if (lblUser.Text == "Sandie")
+            {
+                table = "payRunYearToDates;";
+            }
+            else if (lblUser.Text == "IT Team")
+            {
+                table = "payRunYearToDatesIT;";
+            }
+
+            string query = $"DELETE FROM {table}";
 
             string sqlConnectionString = "Data Source = PESCAPE-SRV1\\SQL2012STAR; Initial Catalog = Unity; User ID = sa; Password = JB20soft14";
             SqlConnection sqlConnection = new SqlConnection(sqlConnectionString);
@@ -308,7 +367,17 @@ namespace Comparison_Tool_v2
 
         private void ClearStarYTD()
         {
-            string query = "DELETE FROM starYearToDates;";
+            string table = null;
+            if (lblUser.Text == "Sandie")
+            {
+                table = "starYearToDates;";
+            }
+            else if (lblUser.Text == "IT Team")
+            {
+                table = "starYearToDatesIT;";
+            }
+
+            string query = $"DELETE FROM {table}";
 
             string sqlConnectionString = "Data Source = PESCAPE-SRV1\\SQL2012STAR; Initial Catalog = Unity; User ID = sa; Password = JB20soft14";
             SqlConnection sqlConnection = new SqlConnection(sqlConnectionString);
@@ -331,6 +400,16 @@ namespace Comparison_Tool_v2
             string line;
             string[] csvValues = new string[56];
 
+            string table = null;
+            if (lblUser.Text == "Sandie")
+            {
+                table = "starYearToDates";
+            }
+            else if (lblUser.Text == "IT Team")
+            {
+                table = "starYearToDatesIT";
+            }
+
             try
             {
                 string file = starYTD;
@@ -345,7 +424,7 @@ namespace Comparison_Tool_v2
                         {
                             csvValues = Regex.Split(line, ",");
 
-                            string insertQuery = ("INSERT INTO starYearToDates (Co, RunDate, Process, Batch, EeRef, LeaveDate, Leaver, TaxPreviousEmt, TaxablePayPreviousEmt, TaxThisEmt, TaxablePayThisEmt, GrossedUp, GrossedUpTax, NetPay, GrossYTD, BenefitInKind, Superannuation, HolidayPay, ErPensionYTD, EePensionYTD, AEOYTD, StudentLoanStartDate, StudentLoanEndDate, StudentLoanDeductions, NILetter, Total, EarningsToLEL, EarningsToSET, EarningsToPET, EarningsToUST, EarningsToAUST, EarningsToUEL, EarningsAboveUEL, EeContributionsPt1, EeContributionsPt2, ErContributions, EeRebate, ErRebate, EeReduction, PayCode, Det, PayCodeValue, PayCodeDesc, AccYearBal, PAYEYearBal, AccYearUnits, PAYEYearUnits, TaxCode, Week1Month1, WeekNumber, MonthNumber, NIEarningsYTD, StudentLoanPlanType, PostgraduateLoanStartDate, PostgraduateLoanEndDate, PostgraduateLoanDeducted) " +
+                            string insertQuery = ("INSERT INTO " + table + " (Co, RunDate, Process, Batch, EeRef, LeaveDate, Leaver, TaxPreviousEmt, TaxablePayPreviousEmt, TaxThisEmt, TaxablePayThisEmt, GrossedUp, GrossedUpTax, NetPay, GrossYTD, BenefitInKind, Superannuation, HolidayPay, ErPensionYTD, EePensionYTD, AEOYTD, StudentLoanStartDate, StudentLoanEndDate, StudentLoanDeductions, NILetter, Total, EarningsToLEL, EarningsToSET, EarningsToPET, EarningsToUST, EarningsToAUST, EarningsToUEL, EarningsAboveUEL, EeContributionsPt1, EeContributionsPt2, ErContributions, EeRebate, ErRebate, EeReduction, PayCode, Det, PayCodeValue, PayCodeDesc, AccYearBal, PAYEYearBal, AccYearUnits, PAYEYearUnits, TaxCode, Week1Month1, WeekNumber, MonthNumber, NIEarningsYTD, StudentLoanPlanType, PostgraduateLoanStartDate, PostgraduateLoanEndDate, PostgraduateLoanDeducted) " +
                                                              "VALUES (@Co, @RunDate, @Process, @Batch, @EeRef, @LeaveDate, @Leaver, @TaxPreviousEmt, @TaxablePayPreviousEmt, @TaxThisEmt, @TaxablePayThisEmt, @GrossedUp, @GrossedUpTax, @NetPay, @GrossYTD, @BenefitInKind, @Superannuation, @HolidayPay, @ErPensionYTD, @EePensionYTD, @AEOYTD, @StudentLoanStartDate, @StudentLoanEndDate, @StudentLoanDeductions, @NILetter, @Total, @EarningsToLEL, @EarningsToSET, @EarningsToPET, @EarningsToUST, @EarningsToAUST, @EarningsToUEL, @EarningsAboveUEL, @EeContributionsPt1, @EeContributionsPt2, @ErContributions, @EeRebate, @ErRebate, @EeReduction, @PayCode, @Det, @PayCodeValue, @PayCodeDesc, @AccYearBal, @PAYEYearBal, @AccYearUnits, @PAYEYearUnits, @TaxCode, @Week1Month1, @WeekNumber, @MonthNumber, @NIEarningsYTD, @StudentLoanPlanType, @PostgraduateLoanStartDate, @PostgraduateLoanEndDate, @PostgraduateLoanDeducted)");
 
                             SqlCommand command = new SqlCommand(insertQuery);
@@ -440,6 +519,16 @@ namespace Comparison_Tool_v2
             string line;
             string[] csvValues = new string[56];
 
+            string table = null;
+            if (lblUser.Text == "Sandie")
+            {
+                table = "payRunYearToDates";
+            }
+            else if (lblUser.Text == "IT Team")
+            {
+                table = "payRunYearToDatesIT";
+            }
+
             try
             {
                 string file = payrunioYTD;
@@ -459,7 +548,7 @@ namespace Comparison_Tool_v2
                                 csvValues[i] = csvValues[i].Replace(@"""", String.Empty);
                             }
 
-                            string insertQuery = ("INSERT INTO payRunYearToDates (Co, RunDate, Process, Batch, EeRef, LeaveDate, Leaver, TaxPreviousEmt, TaxablePayPreviousEmt, TaxThisEmt, TaxablePayThisEmt, GrossedUp, GrossedUpTax, NetPay, GrossYTD, BenefitInKind, Superannuation, HolidayPay, ErPensionYTD, EePensionYTD, AEOYTD, StudentLoanStartDate, StudentLoanEndDate, StudentLoanDeductions, NILetter, Total, EarningsToLEL, EarningsToSET, EarningsToPET, EarningsToUST, EarningsToAUST, EarningsToUEL, EarningsAboveUEL, EeContributionsPt1, EeContributionsPt2, ErContributions, EeRebate, ErRebate, EeReduction, PayCode, Det, PayCodeValue, PayCodeDesc, AccYearBal, PAYEYearBal, AccYearUnits, PAYEYearUnits, TaxCode, Week1Month1, WeekNumber, MonthNumber, NIEarningsYTD, StudentLoanPlanType, PostgraduateLoanStartDate, PostgraduateLoanEndDate, PostgraduateLoanDeducted) " +
+                            string insertQuery = ("INSERT INTO " + table + " (Co, RunDate, Process, Batch, EeRef, LeaveDate, Leaver, TaxPreviousEmt, TaxablePayPreviousEmt, TaxThisEmt, TaxablePayThisEmt, GrossedUp, GrossedUpTax, NetPay, GrossYTD, BenefitInKind, Superannuation, HolidayPay, ErPensionYTD, EePensionYTD, AEOYTD, StudentLoanStartDate, StudentLoanEndDate, StudentLoanDeductions, NILetter, Total, EarningsToLEL, EarningsToSET, EarningsToPET, EarningsToUST, EarningsToAUST, EarningsToUEL, EarningsAboveUEL, EeContributionsPt1, EeContributionsPt2, ErContributions, EeRebate, ErRebate, EeReduction, PayCode, Det, PayCodeValue, PayCodeDesc, AccYearBal, PAYEYearBal, AccYearUnits, PAYEYearUnits, TaxCode, Week1Month1, WeekNumber, MonthNumber, NIEarningsYTD, StudentLoanPlanType, PostgraduateLoanStartDate, PostgraduateLoanEndDate, PostgraduateLoanDeducted) " +
                                                              "VALUES (@Co, @RunDate, @Process, @Batch, @EeRef, @LeaveDate, @Leaver, @TaxPreviousEmt, @TaxablePayPreviousEmt, @TaxThisEmt, @TaxablePayThisEmt, @GrossedUp, @GrossedUpTax, @NetPay, @GrossYTD, @BenefitInKind, @Superannuation, @HolidayPay, @ErPensionYTD, @EePensionYTD, @AEOYTD, @StudentLoanStartDate, @StudentLoanEndDate, @StudentLoanDeductions, @NILetter, @Total, @EarningsToLEL, @EarningsToSET, @EarningsToPET, @EarningsToUST, @EarningsToAUST, @EarningsToUEL, @EarningsAboveUEL, @EeContributionsPt1, @EeContributionsPt2, @ErContributions, @EeRebate, @ErRebate, @EeReduction, @PayCode, @Det, @PayCodeValue, @PayCodeDesc, @AccYearBal, @PAYEYearBal, @AccYearUnits, @PAYEYearUnits, @TaxCode, @Week1Month1, @WeekNumber, @MonthNumber, @NIEarningsYTD, @StudentLoanPlanType, @PostgraduateLoanStartDate, @PostgraduateLoanEndDate, @PostgraduateLoanDeducted)");
 
                             SqlCommand command = new SqlCommand(insertQuery);
@@ -737,6 +826,22 @@ namespace Comparison_Tool_v2
         /// hover effect
         /// </summary>
 
+        private void lblConfirm_MouseEnter(object sender, EventArgs e)
+        {
+            lblConfirm.BackColor = Color.Gainsboro;
+        }
+        /// <summary>
+        /// hover effect
+        /// </summary>
+
+        private void lblConfirm_MouseLeave(object sender, EventArgs e)
+        {
+            lblConfirm.BackColor = Color.White;
+        }
+        /// <summary>
+        /// hover effect
+        /// </summary>
+
         private void btnPayHistoryPR_Click(object sender, EventArgs e)
         {
             OpenFileDialog openfiledialog = new OpenFileDialog();
@@ -896,12 +1001,12 @@ namespace Comparison_Tool_v2
                 return;
             }
 
-            ClearPayRunPayHistory();
-            ClearStarPayHistory();
+                ClearPayRunPayHistory();
+                ClearStarPayHistory();
 
-            ImportStarPH();
-            ImportPayRunIOPH();
-
+                ImportStarPH();
+                ImportPayRunIOPH();
+            
             if (phSuccess)
             {
                 MessageBox.Show("Pay History Files Imported.");
@@ -956,7 +1061,17 @@ namespace Comparison_Tool_v2
             string queryPath = "J:\\Shared Data\\Data\\Queries\\SQL\\";
             string query;
 
-            using (StreamReader stream = new StreamReader(queryPath + "comparisonPayHistoryFiles.sql"))
+            string file = null;
+            if (lblUser.Text == "Sandie")
+            {
+                file = "comparisonPayHistoryFiles.sql";
+            }
+            else if (lblUser.Text == "IT Team")
+            {
+                file = "comparisonPayHistoryFilesIT.sql";
+            }
+
+            using (StreamReader stream = new StreamReader(queryPath + file))
             {
                 query = stream.ReadToEnd();
             }
@@ -1017,7 +1132,17 @@ namespace Comparison_Tool_v2
             string queryPath = "J:\\Shared Data\\Data\\Queries\\SQL\\";
             string query;
 
-            using (StreamReader stream = new StreamReader(queryPath + "comparisonYTDFiles.sql"))
+            string file = null;
+            if (lblUser.Text == "Sandie")
+            {
+                file = "comparisonYTDFiles.sql";
+            }
+            else if (lblUser.Text == "IT Team")
+            {
+                file = "comparisonYTDFilesIT.sql";
+            }
+
+            using (StreamReader stream = new StreamReader(queryPath + file))
             {
                 query = stream.ReadToEnd();
             }
@@ -1078,7 +1203,17 @@ namespace Comparison_Tool_v2
             string queryPath = "J:\\Shared Data\\Data\\Queries\\SQL\\";
             string query;
 
-            using (StreamReader stream = new StreamReader(queryPath + "comparisonPayHistoryPayCodes.sql"))
+            string file = null;
+            if (lblUser.Text == "Sandie")
+            {
+                file = "comparisonPayHistoryPayCodes.sql";
+            }
+            else if (lblUser.Text == "IT Team")
+            {
+                file = "comparisonPayHistoryPayCodesIT.sql";
+            }
+
+            using (StreamReader stream = new StreamReader(queryPath + file))
             {
                 query = stream.ReadToEnd();
             }
@@ -1139,7 +1274,17 @@ namespace Comparison_Tool_v2
             string queryPath = "J:\\Shared Data\\Data\\Queries\\SQL\\";
             string query;
 
-            using (StreamReader stream = new StreamReader(queryPath + "comparisonYTDPaycodes.sql"))
+            string file = null;
+            if (lblUser.Text == "Sandie")
+            {
+                file = "comparisonYTDPaycodes.sql";
+            }
+            else if (lblUser.Text == "IT Team")
+            {
+                file = "comparisonYTDPaycodesIT.sql";
+            }
+
+            using (StreamReader stream = new StreamReader(queryPath + file))
             {
                 query = stream.ReadToEnd();
             }
@@ -1192,6 +1337,25 @@ namespace Comparison_Tool_v2
         }
         /// <summary>
         /// downloading the paycode differences in the ytd file
+        /// </summary>
+
+        private void lblConfirm_Click(object sender, EventArgs e)
+        {
+            if (radSandie.Checked)
+            {
+                user = "Sandie";
+                lblUser.Text = user;
+            }
+            else if (radIT.Checked)
+            {
+                user = "IT Team";
+                lblUser.Text = user;
+            }
+            tabControl.TabPages.Remove(tabUser);
+            tabControl.TabPages.Add(tabImport);
+        }
+        /// <summary>
+        /// user selects who is using the application
         /// </summary>
     }
 }

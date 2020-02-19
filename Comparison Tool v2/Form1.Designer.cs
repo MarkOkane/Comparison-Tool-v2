@@ -38,6 +38,7 @@
             this.lblClear = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabImport = new System.Windows.Forms.TabPage();
+            this.lblUser = new System.Windows.Forms.Label();
             this.lblRowCountPrPH = new System.Windows.Forms.Label();
             this.lblRowCountStarPH = new System.Windows.Forms.Label();
             this.lblRowCountStarYTD = new System.Windows.Forms.Label();
@@ -63,6 +64,11 @@
             this.btnDownloadYTD = new Telerik.WinControls.UI.RadButton();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.tabUser = new System.Windows.Forms.TabPage();
+            this.lblConfirm = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.radIT = new System.Windows.Forms.RadioButton();
+            this.radSandie = new System.Windows.Forms.RadioButton();
             this.sfdPH = new System.Windows.Forms.SaveFileDialog();
             this.sfdYTD = new System.Windows.Forms.SaveFileDialog();
             this.sfdPHPayCodes = new System.Windows.Forms.SaveFileDialog();
@@ -79,6 +85,7 @@
             this.tabYTD.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnDownloadPayCodesYTD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDownloadYTD)).BeginInit();
+            this.tabUser.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblPayHistoryPR
@@ -138,6 +145,7 @@
             this.tabControl.Controls.Add(this.tabImport);
             this.tabControl.Controls.Add(this.tabPH);
             this.tabControl.Controls.Add(this.tabYTD);
+            this.tabControl.Controls.Add(this.tabUser);
             this.tabControl.Font = new System.Drawing.Font("Dubai", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl.Location = new System.Drawing.Point(-1, 0);
             this.tabControl.Name = "tabControl";
@@ -148,6 +156,7 @@
             // tabImport
             // 
             this.tabImport.BackColor = System.Drawing.Color.White;
+            this.tabImport.Controls.Add(this.lblUser);
             this.tabImport.Controls.Add(this.lblRowCountPrPH);
             this.tabImport.Controls.Add(this.lblRowCountStarPH);
             this.tabImport.Controls.Add(this.lblRowCountStarYTD);
@@ -176,6 +185,15 @@
             this.tabImport.Size = new System.Drawing.Size(674, 473);
             this.tabImport.TabIndex = 0;
             this.tabImport.Text = "Import";
+            // 
+            // lblUser
+            // 
+            this.lblUser.AutoSize = true;
+            this.lblUser.Font = new System.Drawing.Font("Dubai", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUser.Location = new System.Drawing.Point(3, 3);
+            this.lblUser.Name = "lblUser";
+            this.lblUser.Size = new System.Drawing.Size(0, 18);
+            this.lblUser.TabIndex = 26;
             // 
             // lblRowCountPrPH
             // 
@@ -464,6 +482,70 @@
             this.label3.TabIndex = 16;
             this.label3.Text = "Compare the differences in the YTD files.";
             // 
+            // tabUser
+            // 
+            this.tabUser.Controls.Add(this.lblConfirm);
+            this.tabUser.Controls.Add(this.label6);
+            this.tabUser.Controls.Add(this.radIT);
+            this.tabUser.Controls.Add(this.radSandie);
+            this.tabUser.Location = new System.Drawing.Point(4, 31);
+            this.tabUser.Name = "tabUser";
+            this.tabUser.Padding = new System.Windows.Forms.Padding(3);
+            this.tabUser.Size = new System.Drawing.Size(674, 473);
+            this.tabUser.TabIndex = 3;
+            this.tabUser.Text = "User";
+            this.tabUser.UseVisualStyleBackColor = true;
+            // 
+            // lblConfirm
+            // 
+            this.lblConfirm.BackColor = System.Drawing.Color.White;
+            this.lblConfirm.Font = new System.Drawing.Font("Dubai", 18F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConfirm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
+            this.lblConfirm.Location = new System.Drawing.Point(287, 300);
+            this.lblConfirm.Name = "lblConfirm";
+            this.lblConfirm.Size = new System.Drawing.Size(100, 42);
+            this.lblConfirm.TabIndex = 18;
+            this.lblConfirm.Text = "Confirm";
+            this.lblConfirm.Click += new System.EventHandler(this.lblConfirm_Click);
+            this.lblConfirm.MouseEnter += new System.EventHandler(this.lblConfirm_MouseEnter);
+            this.lblConfirm.MouseLeave += new System.EventHandler(this.lblConfirm_MouseLeave);
+            // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("Dubai", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
+            this.label6.Location = new System.Drawing.Point(273, 33);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(128, 33);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "Select User";
+            // 
+            // radIT
+            // 
+            this.radIT.AutoSize = true;
+            this.radIT.Font = new System.Drawing.Font("Dubai", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radIT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
+            this.radIT.Location = new System.Drawing.Point(279, 206);
+            this.radIT.Name = "radIT";
+            this.radIT.Size = new System.Drawing.Size(116, 44);
+            this.radIT.TabIndex = 1;
+            this.radIT.TabStop = true;
+            this.radIT.Text = "IT Team";
+            this.radIT.UseVisualStyleBackColor = true;
+            // 
+            // radSandie
+            // 
+            this.radSandie.AutoSize = true;
+            this.radSandie.Font = new System.Drawing.Font("Dubai", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radSandie.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
+            this.radSandie.Location = new System.Drawing.Point(279, 146);
+            this.radSandie.Name = "radSandie";
+            this.radSandie.Size = new System.Drawing.Size(99, 44);
+            this.radSandie.TabIndex = 0;
+            this.radSandie.TabStop = true;
+            this.radSandie.Text = "Sandie";
+            this.radSandie.UseVisualStyleBackColor = true;
+            // 
             // sfdPH
             // 
             this.sfdPH.DefaultExt = "CSV";
@@ -522,6 +604,8 @@
             this.tabYTD.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnDownloadPayCodesYTD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDownloadYTD)).EndInit();
+            this.tabUser.ResumeLayout(false);
+            this.tabUser.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -564,6 +648,12 @@
         private System.Windows.Forms.Label lblRowCountPrPH;
         private System.Windows.Forms.Label lblRowCountStarPH;
         private System.Windows.Forms.Label lblRowCountStarYTD;
+        private System.Windows.Forms.TabPage tabUser;
+        private System.Windows.Forms.Label lblConfirm;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.RadioButton radIT;
+        private System.Windows.Forms.RadioButton radSandie;
+        private System.Windows.Forms.Label lblUser;
     }
 }
 
