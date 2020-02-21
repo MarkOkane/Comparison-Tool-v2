@@ -842,6 +842,38 @@ namespace Comparison_Tool_v2
         /// hover effect
         /// </summary>
 
+        private void lblClosePHPanel_MouseEnter(object sender, EventArgs e)
+        {
+            lblClosePHPanel.Font = new Font(lblClosePHPanel.Font.Name, lblClosePHPanel.Font.SizeInPoints, FontStyle.Underline);
+        }
+        /// <summary>
+        /// hover effect
+        /// </summary>
+
+        private void lblClosePHPanel_MouseLeave(object sender, EventArgs e)
+        {
+            lblClosePHPanel.Font = new Font(lblClosePHPanel.Font.Name, lblClosePHPanel.Font.SizeInPoints, FontStyle.Regular);
+        }
+        /// <summary>
+        /// hover effect
+        /// </summary>
+
+        private void lblCloseYTDPanel_MouseEnter(object sender, EventArgs e)
+        {
+            lblCloseYTDPanel.Font = new Font(lblCloseYTDPanel.Font.Name, lblCloseYTDPanel.Font.SizeInPoints, FontStyle.Underline);
+        }
+        /// <summary>
+        /// hover effect
+        /// </summary>
+
+        private void lblCloseYTDPanel_MouseLeave(object sender, EventArgs e)
+        {
+            lblCloseYTDPanel.Font = new Font(lblCloseYTDPanel.Font.Name, lblCloseYTDPanel.Font.SizeInPoints, FontStyle.Regular);
+        }
+        /// <summary>
+        /// hover effect
+        /// </summary>
+
         private void btnPayHistoryPR_Click(object sender, EventArgs e)
         {
             OpenFileDialog openfiledialog = new OpenFileDialog();
@@ -969,6 +1001,11 @@ namespace Comparison_Tool_v2
             lblRowCountStarPH.Text = "";
             lblRowCountStarYTD.Text = "";
 
+            dgvEePH.Rows.Clear();
+            dgvEeYTD.Rows.Clear();
+            panelPHEes.Visible = false;
+            panelYTDEes.Visible = false;
+
             starPH = null;
             starYTD = null;
             payrunioPH = null;
@@ -978,7 +1015,7 @@ namespace Comparison_Tool_v2
             if (tabControl.TabPages.Contains(tabPH)) { tabControl.TabPages.Remove(tabPH); }
         }
         /// <summary>
-        /// clearing the files
+        /// clearing the files & everything else that needs cleared
         /// </summary>
 
         private void lblImportPH_Click(object sender, EventArgs e)
@@ -1356,6 +1393,159 @@ namespace Comparison_Tool_v2
         }
         /// <summary>
         /// user selects who is using the application
+        /// </summary>
+
+        private void chkEes_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkEes.Checked)
+            {
+                panelPHEes.Visible = true;
+                chkEes.Visible = false;
+
+                DataSet sqlDataSet = new DataSet();
+                string queryPath = "J:\\Shared Data\\Data\\Queries\\SQL\\";
+                string query;
+
+                string file = null;
+                if (lblUser.Text == "Sandie")
+                {
+                    file = "comparisonPayHistoryEes.sql";
+                }
+                else if (lblUser.Text == "IT Team")
+                {
+                    file = "comparisonPayHistoryEesIT.sql";
+                }
+
+                using (StreamReader stream = new StreamReader(queryPath + file))
+                {
+                    query = stream.ReadToEnd();
+                }
+
+                string connectionString = "Data Source = PESCAPE-SRV1\\SQL2012STAR; Initial Catalog = Unity; User ID = sa; Password = JB20soft14;";
+                SqlConnection sqlConnection = new SqlConnection(connectionString);
+                try
+                {
+                    sqlConnection.Open();
+                    SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+                    SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+                    sqlDataAdapter.Fill(sqlDataSet, "comparison");
+                    sqlCommand.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to retrieve YTD Data.\r\n\r\n" + ex);
+                }
+                finally
+                {
+                    sqlConnection.Close();
+                    sqlConnection.Dispose();
+
+                    DataRowCollection rows = sqlDataSet.Tables["comparison"].Rows;
+                    int line = 0;
+
+                    foreach (DataRow row in rows)
+                    {
+                        dgvEePH.Rows.Add();
+                        dgvEePH.Rows[line].Cells[0].Value = row.ItemArray[0].ToString();
+                        dgvEePH.Rows[line].Cells[1].Value = row.ItemArray[1].ToString();
+                        line++;
+                    }
+                    sqlDataSet.Clear();
+                    sqlDataSet.Dispose();
+                }
+            }
+            else if (!chkEes.Checked) { panelPHEes.Visible = false; }
+        }
+        /// <summary>
+        /// checking to see if their is any employees missing from pay history files
+        /// </summary>
+
+        private void lblClosePHPanel_Click(object sender, EventArgs e)
+        {
+            panelPHEes.Visible = false;
+            chkEes.Visible = true;
+            chkEes.Checked = false;
+            dgvEePH.Rows.Clear();
+        }
+        /// <summary>
+        /// closing the pay history employees panel
+        /// </summary>
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                panelYTDEes.Visible = true;
+                checkBox1.Visible = false;
+
+                DataSet sqlDataSet = new DataSet();
+                string queryPath = "J:\\Shared Data\\Data\\Queries\\SQL\\";
+                string query;
+
+                string file = null;
+                if (lblUser.Text == "Sandie")
+                {
+                    file = "comparisonYTDEes.sql";
+                }
+                else if (lblUser.Text == "IT Team")
+                {
+                    file = "comparisonYTDEesIT.sql";
+                }
+
+                using (StreamReader stream = new StreamReader(queryPath + file))
+                {
+                    query = stream.ReadToEnd();
+                }
+
+                string connectionString = "Data Source = PESCAPE-SRV1\\SQL2012STAR; Initial Catalog = Unity; User ID = sa; Password = JB20soft14;";
+                SqlConnection sqlConnection = new SqlConnection(connectionString);
+                try
+                {
+                    sqlConnection.Open();
+                    SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+                    SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+                    sqlDataAdapter.Fill(sqlDataSet, "comparison");
+                    sqlCommand.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to retrieve YTD Data.\r\n\r\n" + ex);
+                }
+                finally
+                {
+                    sqlConnection.Close();
+                    sqlConnection.Dispose();
+
+                    DataRowCollection rows = sqlDataSet.Tables["comparison"].Rows;
+                    int line = 0;
+
+                    foreach (DataRow row in rows)
+                    {
+                        dgvEeYTD.Rows.Add();
+                        dgvEeYTD.Rows[line].Cells[0].Value = row.ItemArray[0].ToString();
+                        dgvEeYTD.Rows[line].Cells[1].Value = row.ItemArray[1].ToString();
+                        line++;
+                    }
+                    sqlDataSet.Clear();
+                    sqlDataSet.Dispose();
+                    label3.Focus();
+                }
+            }
+            else if (!checkBox1.Checked) { panelYTDEes.Visible = false; }
+        }
+        /// <summary>
+        /// checking to see if their is any employees missing from ytd files
+        /// </summary>
+
+        private void lblCloseYTDPanel_Click(object sender, EventArgs e)
+        {
+            panelYTDEes.Visible = false;
+            checkBox1.Visible = true;
+            checkBox1.Checked = false;
+            dgvEeYTD.Rows.Clear();
+        }
+        /// <summary>
+        /// closing the ytd employees panel
         /// </summary>
     }
 }

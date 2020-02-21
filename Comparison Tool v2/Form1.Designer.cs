@@ -30,6 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblPayHistoryPR = new System.Windows.Forms.Label();
             this.lblYearToDatePR = new System.Windows.Forms.Label();
             this.lblPayHistoryStar = new System.Windows.Forms.Label();
@@ -55,11 +59,23 @@
             this.btnPayHistoryStar = new Telerik.WinControls.UI.RadButton();
             this.btnPayHistoryPR = new Telerik.WinControls.UI.RadButton();
             this.tabPH = new System.Windows.Forms.TabPage();
+            this.chkEes = new System.Windows.Forms.CheckBox();
+            this.panelPHEes = new System.Windows.Forms.Panel();
+            this.lblClosePHPanel = new System.Windows.Forms.Label();
+            this.dgvEePH = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDownloadPayCodesPH = new Telerik.WinControls.UI.RadButton();
             this.btnDownloadPH = new Telerik.WinControls.UI.RadButton();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tabYTD = new System.Windows.Forms.TabPage();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.panelYTDEes = new System.Windows.Forms.Panel();
+            this.lblCloseYTDPanel = new System.Windows.Forms.Label();
+            this.dgvEeYTD = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDownloadPayCodesYTD = new Telerik.WinControls.UI.RadButton();
             this.btnDownloadYTD = new Telerik.WinControls.UI.RadButton();
             this.label5 = new System.Windows.Forms.Label();
@@ -80,9 +96,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnPayHistoryStar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPayHistoryPR)).BeginInit();
             this.tabPH.SuspendLayout();
+            this.panelPHEes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEePH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDownloadPayCodesPH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDownloadPH)).BeginInit();
             this.tabYTD.SuspendLayout();
+            this.panelYTDEes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEeYTD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDownloadPayCodesYTD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDownloadYTD)).BeginInit();
             this.tabUser.SuspendLayout();
@@ -284,6 +304,7 @@
             this.lblImportYTD.Size = new System.Drawing.Size(124, 29);
             this.lblImportYTD.TabIndex = 16;
             this.lblImportYTD.Text = "Import YTD Files";
+            this.lblImportYTD.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lblImportYTD.Click += new System.EventHandler(this.lblImportYTD_Click);
             this.lblImportYTD.MouseEnter += new System.EventHandler(this.lblImportYTD_MouseEnter_1);
             this.lblImportYTD.MouseLeave += new System.EventHandler(this.lblImportYTD_MouseLeave_1);
@@ -298,6 +319,7 @@
             this.lblImportPH.Size = new System.Drawing.Size(114, 29);
             this.lblImportPH.TabIndex = 15;
             this.lblImportPH.Text = "Import PH Files";
+            this.lblImportPH.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lblImportPH.Click += new System.EventHandler(this.lblImportPH_Click);
             this.lblImportPH.MouseEnter += new System.EventHandler(this.lblImportPH_MouseEnter_1);
             this.lblImportPH.MouseLeave += new System.EventHandler(this.lblImportPH_MouseLeave_1);
@@ -367,6 +389,8 @@
             // tabPH
             // 
             this.tabPH.BackColor = System.Drawing.Color.White;
+            this.tabPH.Controls.Add(this.chkEes);
+            this.tabPH.Controls.Add(this.panelPHEes);
             this.tabPH.Controls.Add(this.btnDownloadPayCodesPH);
             this.tabPH.Controls.Add(this.btnDownloadPH);
             this.tabPH.Controls.Add(this.label4);
@@ -377,6 +401,77 @@
             this.tabPH.Size = new System.Drawing.Size(674, 473);
             this.tabPH.TabIndex = 1;
             this.tabPH.Text = "Pay History";
+            // 
+            // chkEes
+            // 
+            this.chkEes.AutoSize = true;
+            this.chkEes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
+            this.chkEes.Location = new System.Drawing.Point(277, 330);
+            this.chkEes.Name = "chkEes";
+            this.chkEes.Size = new System.Drawing.Size(120, 26);
+            this.chkEes.TabIndex = 20;
+            this.chkEes.Text = "Check Employees";
+            this.chkEes.UseVisualStyleBackColor = true;
+            this.chkEes.CheckedChanged += new System.EventHandler(this.chkEes_CheckedChanged);
+            // 
+            // panelPHEes
+            // 
+            this.panelPHEes.Controls.Add(this.lblClosePHPanel);
+            this.panelPHEes.Controls.Add(this.dgvEePH);
+            this.panelPHEes.Location = new System.Drawing.Point(101, 57);
+            this.panelPHEes.Name = "panelPHEes";
+            this.panelPHEes.Size = new System.Drawing.Size(480, 374);
+            this.panelPHEes.TabIndex = 0;
+            this.panelPHEes.Visible = false;
+            // 
+            // lblClosePHPanel
+            // 
+            this.lblClosePHPanel.Font = new System.Drawing.Font("Dubai", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblClosePHPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
+            this.lblClosePHPanel.Location = new System.Drawing.Point(209, 328);
+            this.lblClosePHPanel.Name = "lblClosePHPanel";
+            this.lblClosePHPanel.Size = new System.Drawing.Size(62, 33);
+            this.lblClosePHPanel.TabIndex = 21;
+            this.lblClosePHPanel.Text = "Close";
+            this.lblClosePHPanel.Click += new System.EventHandler(this.lblClosePHPanel_Click);
+            this.lblClosePHPanel.MouseEnter += new System.EventHandler(this.lblClosePHPanel_MouseEnter);
+            this.lblClosePHPanel.MouseLeave += new System.EventHandler(this.lblClosePHPanel_MouseLeave);
+            // 
+            // dgvEePH
+            // 
+            this.dgvEePH.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ButtonFace;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvEePH.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvEePH.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvEePH.BackgroundColor = System.Drawing.Color.White;
+            this.dgvEePH.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEePH.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Dubai", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvEePH.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvEePH.Location = new System.Drawing.Point(3, 3);
+            this.dgvEePH.Name = "dgvEePH";
+            this.dgvEePH.Size = new System.Drawing.Size(474, 312);
+            this.dgvEePH.TabIndex = 0;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Star Ee\'s";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "PayRun.IO ee\'s";
+            this.Column2.Name = "Column2";
             // 
             // btnDownloadPayCodesPH
             // 
@@ -425,6 +520,8 @@
             // 
             // tabYTD
             // 
+            this.tabYTD.Controls.Add(this.checkBox1);
+            this.tabYTD.Controls.Add(this.panelYTDEes);
             this.tabYTD.Controls.Add(this.btnDownloadPayCodesYTD);
             this.tabYTD.Controls.Add(this.btnDownloadYTD);
             this.tabYTD.Controls.Add(this.label5);
@@ -436,6 +533,77 @@
             this.tabYTD.TabIndex = 2;
             this.tabYTD.Text = "YTD";
             this.tabYTD.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
+            this.checkBox1.Location = new System.Drawing.Point(277, 329);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(120, 26);
+            this.checkBox1.TabIndex = 22;
+            this.checkBox1.Text = "Check Employees";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // panelYTDEes
+            // 
+            this.panelYTDEes.Controls.Add(this.lblCloseYTDPanel);
+            this.panelYTDEes.Controls.Add(this.dgvEeYTD);
+            this.panelYTDEes.Location = new System.Drawing.Point(101, 57);
+            this.panelYTDEes.Name = "panelYTDEes";
+            this.panelYTDEes.Size = new System.Drawing.Size(480, 374);
+            this.panelYTDEes.TabIndex = 21;
+            this.panelYTDEes.Visible = false;
+            // 
+            // lblCloseYTDPanel
+            // 
+            this.lblCloseYTDPanel.Font = new System.Drawing.Font("Dubai", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCloseYTDPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
+            this.lblCloseYTDPanel.Location = new System.Drawing.Point(209, 328);
+            this.lblCloseYTDPanel.Name = "lblCloseYTDPanel";
+            this.lblCloseYTDPanel.Size = new System.Drawing.Size(62, 33);
+            this.lblCloseYTDPanel.TabIndex = 21;
+            this.lblCloseYTDPanel.Text = "Close";
+            this.lblCloseYTDPanel.Click += new System.EventHandler(this.lblCloseYTDPanel_Click);
+            this.lblCloseYTDPanel.MouseEnter += new System.EventHandler(this.lblCloseYTDPanel_MouseEnter);
+            this.lblCloseYTDPanel.MouseLeave += new System.EventHandler(this.lblCloseYTDPanel_MouseLeave);
+            // 
+            // dgvEeYTD
+            // 
+            this.dgvEeYTD.AllowUserToAddRows = false;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ButtonFace;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ButtonFace;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvEeYTD.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvEeYTD.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvEeYTD.BackgroundColor = System.Drawing.Color.White;
+            this.dgvEeYTD.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEeYTD.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2});
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Dubai", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvEeYTD.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvEeYTD.Location = new System.Drawing.Point(3, 3);
+            this.dgvEeYTD.Name = "dgvEeYTD";
+            this.dgvEeYTD.Size = new System.Drawing.Size(474, 312);
+            this.dgvEeYTD.TabIndex = 0;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Star Ee\'s";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "PayRun.IO ee\'s";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             // 
             // btnDownloadPayCodesYTD
             // 
@@ -501,11 +669,12 @@
             this.lblConfirm.BackColor = System.Drawing.Color.White;
             this.lblConfirm.Font = new System.Drawing.Font("Dubai", 18F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblConfirm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
-            this.lblConfirm.Location = new System.Drawing.Point(287, 300);
+            this.lblConfirm.Location = new System.Drawing.Point(283, 300);
             this.lblConfirm.Name = "lblConfirm";
-            this.lblConfirm.Size = new System.Drawing.Size(100, 42);
+            this.lblConfirm.Size = new System.Drawing.Size(108, 42);
             this.lblConfirm.TabIndex = 18;
             this.lblConfirm.Text = "Confirm";
+            this.lblConfirm.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lblConfirm.Click += new System.EventHandler(this.lblConfirm_Click);
             this.lblConfirm.MouseEnter += new System.EventHandler(this.lblConfirm_MouseEnter);
             this.lblConfirm.MouseLeave += new System.EventHandler(this.lblConfirm_MouseLeave);
@@ -598,10 +767,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnPayHistoryPR)).EndInit();
             this.tabPH.ResumeLayout(false);
             this.tabPH.PerformLayout();
+            this.panelPHEes.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEePH)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDownloadPayCodesPH)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDownloadPH)).EndInit();
             this.tabYTD.ResumeLayout(false);
             this.tabYTD.PerformLayout();
+            this.panelYTDEes.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEeYTD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDownloadPayCodesYTD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDownloadYTD)).EndInit();
             this.tabUser.ResumeLayout(false);
@@ -654,6 +827,18 @@
         private System.Windows.Forms.RadioButton radIT;
         private System.Windows.Forms.RadioButton radSandie;
         private System.Windows.Forms.Label lblUser;
+        private System.Windows.Forms.CheckBox chkEes;
+        private System.Windows.Forms.Panel panelPHEes;
+        private System.Windows.Forms.DataGridView dgvEePH;
+        private System.Windows.Forms.Label lblClosePHPanel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Panel panelYTDEes;
+        private System.Windows.Forms.Label lblCloseYTDPanel;
+        private System.Windows.Forms.DataGridView dgvEeYTD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     }
 }
 
