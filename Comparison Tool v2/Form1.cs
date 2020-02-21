@@ -1005,6 +1005,10 @@ namespace Comparison_Tool_v2
             dgvEeYTD.Rows.Clear();
             panelPHEes.Visible = false;
             panelYTDEes.Visible = false;
+            chkEes.Visible = true;
+            chkEes.Checked = false;
+            checkBox1.Visible = true;
+            checkBox1.Checked = false;
 
             starPH = null;
             starYTD = null;
@@ -1401,6 +1405,8 @@ namespace Comparison_Tool_v2
             {
                 panelPHEes.Visible = true;
                 chkEes.Visible = false;
+                dgvEePH.DefaultCellStyle.ForeColor = Color.Black;
+                dgvEePH.DefaultCellStyle.SelectionForeColor = Color.Black;
 
                 DataSet sqlDataSet = new DataSet();
                 string queryPath = "J:\\Shared Data\\Data\\Queries\\SQL\\";
@@ -1443,13 +1449,27 @@ namespace Comparison_Tool_v2
                     DataRowCollection rows = sqlDataSet.Tables["comparison"].Rows;
                     int line = 0;
 
-                    foreach (DataRow row in rows)
+                    if (rows.Count == 0)
                     {
                         dgvEePH.Rows.Add();
-                        dgvEePH.Rows[line].Cells[0].Value = row.ItemArray[0].ToString();
-                        dgvEePH.Rows[line].Cells[1].Value = row.ItemArray[1].ToString();
-                        line++;
+                        dgvEePH.Rows[line].Cells[0].Value = "No missing Ee's";
+                        dgvEePH.Rows[line].Cells[1].Value = "No missing Ee's";
+
+                        //not sure why i need both of these lines to make font red. seems like a bug to me.
+                        dgvEePH.DefaultCellStyle.SelectionForeColor = Color.Red; 
+                        dgvEePH.DefaultCellStyle.ForeColor = Color.Red;
                     }
+                    else if (rows.Count > 0)
+                    {
+                        foreach (DataRow row in rows)
+                        {
+                            dgvEePH.Rows.Add();
+                            dgvEePH.Rows[line].Cells[0].Value = row.ItemArray[0].ToString();
+                            dgvEePH.Rows[line].Cells[1].Value = row.ItemArray[1].ToString();
+                            line++;
+                        }
+                    }
+                    
                     sqlDataSet.Clear();
                     sqlDataSet.Dispose();
                 }
@@ -1477,6 +1497,8 @@ namespace Comparison_Tool_v2
             {
                 panelYTDEes.Visible = true;
                 checkBox1.Visible = false;
+                dgvEeYTD.DefaultCellStyle.ForeColor = Color.Black;
+                dgvEeYTD.DefaultCellStyle.SelectionForeColor = Color.Black;
 
                 DataSet sqlDataSet = new DataSet();
                 string queryPath = "J:\\Shared Data\\Data\\Queries\\SQL\\";
@@ -1519,16 +1541,28 @@ namespace Comparison_Tool_v2
                     DataRowCollection rows = sqlDataSet.Tables["comparison"].Rows;
                     int line = 0;
 
-                    foreach (DataRow row in rows)
+                    if (rows.Count == 0)
                     {
                         dgvEeYTD.Rows.Add();
-                        dgvEeYTD.Rows[line].Cells[0].Value = row.ItemArray[0].ToString();
-                        dgvEeYTD.Rows[line].Cells[1].Value = row.ItemArray[1].ToString();
-                        line++;
+                        dgvEeYTD.Rows[line].Cells[0].Value = "No missing Ee's";
+                        dgvEeYTD.Rows[line].Cells[1].Value = "No missing Ee's";
+
+                        //not sure why i need both of these lines to make font red. seems like a bug to me.
+                        dgvEeYTD.DefaultCellStyle.SelectionForeColor = Color.Red;
+                        dgvEeYTD.DefaultCellStyle.ForeColor = Color.Red;
+                    }
+                    else if (rows.Count > 0)
+                    {
+                        foreach (DataRow row in rows)
+                        {
+                            dgvEeYTD.Rows.Add();
+                            dgvEeYTD.Rows[line].Cells[0].Value = row.ItemArray[0].ToString();
+                            dgvEeYTD.Rows[line].Cells[1].Value = row.ItemArray[1].ToString();
+                            line++;
+                        }
                     }
                     sqlDataSet.Clear();
                     sqlDataSet.Dispose();
-                    label3.Focus();
                 }
             }
             else if (!checkBox1.Checked) { panelYTDEes.Visible = false; }
